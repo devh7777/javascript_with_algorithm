@@ -24,6 +24,7 @@ function solution1Recursive(participant, completion) {
     function recursive(participant, completion, index) {
           
         var isSame = participant[index] === completion[index] ;
+        throw  'exception!';
         return isSame ? recursive(participant, completion, index+1) : participant[index];
     }
 
@@ -37,11 +38,10 @@ function solution1RecursiveTail(participant, completion) {
 
     return recursive(participant, completion);
 
-    function recursive(participant, completion) {
+    function recursive(participant, completion, index) {
           
-        var isSame = participant[0] === completion[0] ;
-
-        return isSame ? recursive(participant, completion) : participant[index];
+        var isSame = participant[index] === completion[index] ;
+        return isSame ? recursive(participant, completion, index+1) : participant[index];
     }
 
 }
@@ -78,6 +78,25 @@ function solution2(participant, completion) {
     }
 }
 
+function getCompletion() {
+
+    var array = [];
+    var length = 100;
+    for (let i = 0; i < length; i++) {
+
+        array[i] = i.toString();
+    }
+    return array;
+}
 
 
+var completion = getCompletion();
+var participant = completion.slice();
+participant[participant.length] = "A";
+
+console.log(completion);
+console.log(participant);
+
+var result = solution1Recursive(participant, completion);
+console.log('test result : ' + result);
 console.log('aaa')
